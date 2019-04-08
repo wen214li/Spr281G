@@ -22,7 +22,7 @@ WiFiClient wlClient;
 PubSubClient client(wlClient);
 
 dht11 DHT11;
-#define DHT11PIN 7
+#define DHT11PIN 7  //define the DHT11 signal pin
 LiquidCrystal lcd(12, 11, 5, 4, 3, 2);
 
 // callback function handle received message
@@ -60,6 +60,7 @@ void reconnect() {
   }
 }
 
+// Funtion display sensor datas on the LCD
 void lcdDisplay(dht11 DHT11) {
   lcd.setCursor(0, 0);
   lcd.print("Temp: ");
@@ -78,7 +79,6 @@ void setup() {
   client.setCallback(callback);
   
   Serial.print("Start Serial ");
-  pinMode(ledpin, OUTPUT);      // set the LED pin mode
   
   // attempt to connect to Wifi network:
   while ( status != WL_CONNECTED) {
@@ -109,19 +109,19 @@ void loop() {
   }
   client.loop();
 
-  float ft = DHT11.temperature;
+  float ft = DHT11.temperature; //read the sensor data as float
   float fh = DHT11.humidity;
 
-  //counter for the messages, see if I am missing any on the Mqtt broker 
+  //counter for the messages in this case the lient send a message every 5 sec
   long now = millis(); 
   if (now - lastMsg > 5000) {
     lastMsg = now;
     ++value;
     
-    //Preparing for mqtt send 
-    temp_str = String(ft); //converting ftemp (the float variable above) to a string 
+    //Preparing message for mqtt to send 
+    temp_str = String(ft); //converting ft (the float variable above) to a string 
     temp_str.toCharArray(temperature, temp_str.length() + 1); //packaging up the data to publish to mqtt
-    hum_str = String(fh); //converting Humidity (the float variable above) to a string
+    hum_str = String(fh); //converting fh (the float variable above) to a string
     hum_str.toCharArray(humidity, hum_str.length() + 1); //packaging up the data to publish to mqtt
 
     client.publish("SNode/DHTsensor0/temperature",temperature);
@@ -130,7 +130,7 @@ void loop() {
 }
 
 
-// display WIFI status
+// display WIFI status (for debug)
 void printWifiStatus() {
   // print the SSID of the network you're attached to:
   Serial.print("SSID: ");
