@@ -15,10 +15,10 @@ notice: the static ip_address has to be same as the one in dhcpcd.conf
 By following [this](https://www.switchdoc.com/2018/02/tutorial-installing-and-testing-mosquitto-mqtt-on-raspberry-pi/) guide we can install the MQTT on RBP
 
 ### How to use
-1.Turn on the RBP
-2.Open the Terminal
-3.Type 'mosquitto' to start the MQTT broker
-4.Type 'node-red-start' to start a node-red base MQTT client
+1.Turn on the RBP  
+2.Open the Terminal  
+3.Type 'mosquitto' to start the MQTT broker  
+4.Type 'node-red-start' to start a node-red base MQTT client  
 
 ## Arduino setup
 ### Libraries used
