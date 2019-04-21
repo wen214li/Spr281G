@@ -8,15 +8,14 @@ import org.springframework.data.mongodb.repository.Query;
 import java.util.List;
 
 public interface SensorRepository extends MongoRepository<Sensor, ObjectId> {
-    @Query("{'_id': ?0}")
-    Sensor findBy_id(ObjectId id);
+    @Query("{'sensor_id': ?0}")
+    Sensor findBySensor_id(String sensor_id);
 
     List<Sensor> findAll();
 
-    @Query("{'_id': ?0, '_id': ?1}")
-    List<Data> findBy_id_And_id(String _id, BSONTimestamp time );
-
-
+//    @Query("{'_id': ?0, '_id': ?1}")
+//    List<Data> findBy_id(String _id);
+//
 
 }
 

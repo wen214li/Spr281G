@@ -15,6 +15,7 @@ import java.util.List;
 @ToString
 public class Sensor {
     @Id private ObjectId _id;
+    private String sensor_id;
     private List<Data> data;
 
 }
