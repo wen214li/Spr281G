@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-
+@CrossOrigin
 @RestController
 @RequestMapping("/")
 public class SensorController  {
@@ -34,7 +34,8 @@ public class SensorController  {
     public Sensor findBySensor(@RequestParam String sensor_id){
         return sensorService.findBySensor_id(sensor_id);
     }
-//save one sensor
+
+    //save one sensor
     @PostMapping("save")
     public Sensor save(@RequestParam String sensor_id,
                        @RequestParam  @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) Date d,
